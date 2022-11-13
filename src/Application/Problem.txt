@@ -1,0 +1,35 @@
+Podczas laboratorium należy rozwiązać problem przydziału zwierząt do farm przy znanych ograniczeniach:
+ilościowym zapotrzebowaniu na konkretne typy pożywienia przez konkretne zwierząta,
+możliwościach ilościowego zapewnienia konkretnego typu pożywienia przez konkretne farmy,
+kryteriach oceny dokonanego przydziału.
+Nawiasem mówiąc podobny problem występuje w rzeczywistości: jeśli ktoś chce np. założyć farmę dzikich zwierząt, to w zależności od powierzchni tej farmy, rodzaju rosnącej na niej roślinności itp. będzie mógł wprowadzić na teren farmy tylko określoną liczbę odpowiednio dobranych zwierząt.
+Zakładamy, że dane zwierząt czekających na przydział do farm podane są w dwóch tabelach. Pierwsza tabela zawiera listę zwierząt (każdemu zwierzęciu odpowiada osobny wiersz w tabeli, z identyfikatorem zwierzęcia oraz identyfikatorem typu tego zwierzęcia).
+# Identyfikator zwierzęcia; Identyfikator typu zwierzęcia
+1; 1;
+2; 1;
+3; 2;
+...
+Druga tabela zawiera informacje o potrzebach żywnościowych kolejnych typów zwierząt. Danemu typowi zwierzęcia może odpowiadać kilka wierszy w tej tabeli, odpowiednio do różnych typów pożywienia, które zwierzę danego typu potrzebuje. Ale uwaga: niekoniecznie wiersze te są posortowane po identyfikatorach zwierząt oraz identyfikatorach pożywienia.
+# Identyfikator typu zwierzęcia; Identyfikator typu pożywienia; Wymagana masa pożywienia (w dekagramach)
+1; 1; 30
+1; 2; 10
+2; 1; 20
+2; 2; 10
+...
+Dane dotyczące dostępności pożywienia na farmach podane są w trzeciej tabeli. W pierwszej jej kolumnie stoi identyfikator danej farmy. Dostępna masa j-tego typu pożywienia na danej farmie pojawiają się w j+1 kolumnie. Jeśli na danej farmie dany typ pożywienia nie występuje, wtedy w odpowiednim wierszu oraz kolumnie tabeli pojawia się 0.
+# Identyfikator farmy; Dostępna masa pożywienia typu 1; Dostępna masa pożywienia typu 2; Dostępna masa pożywienia typu 3
+1; 400; 300; 900
+2; 0; 500; 300
+...
+Niech kryterium oceny dokonanego przydziału będzie miarą niewykorzystanego potencjału farm, mierzony różnicą tego, co farmy oferują i tego, co wykorzystają przypisane do tych farm zwierzęta:
+P=∑i∑j(dij−∑kzijk)
+gdzie
+dij - masa pożywienia typu j dostępna na farmie i,
+zijk - masa pożywienia typu j, które potrzebuje zwierzę k przypisane do farmy i.
+Znalezione rozwiązanie, tj. rezultat przydziału zwierząt do farm, należy wypisać na ekranie w postaci tabelarycznej:
+# Identyfikator farmy;Niewykorzystany potencjał farmy; Lista przypisanych zwierząt
+1; 0; 1, 2
+2; 100; 3
+...
+Jak widać, w żadnym przypadku identyfikator danego zwierzęcia nie może pojawić się wielokrotnie. W szczególności może się zdarzyć, że do danej farmy nie zostanie przypisane żadne zwierzę (wtedy lista przypisanych zwierząt dla tej farmy będzie pusta). Może się też zdarzyć, że nie da się znaleźć żadnego przydziału (gdy nie da się w żaden sposób zapewnić pożywienia dla wszystkich zwierząt). Wtedy program powinie wypisać zestawienie niewykorzystanego potencjału farm, w którym wszystkie listy przypisanych zwierząt są puste.
+Pozostałe szczegóły mają być zgodne z ustaleniami poczynionymi na początku zajęć.
